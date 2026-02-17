@@ -65,8 +65,24 @@ if __name__ == "__main__":
         default=8000,
         help="Port to listen on (for sse/streamable-http)"
     )
+    parser.add_argument(
+        "--auth-token",
+        help="Bearer token for authentication"
+    )
     
     args = parser.parse_args()
+    
+    if args.auth_token:
+        from fastmcp.server.auth import StaticTokenVerifier
+        # Create a verifier that accepts the provided token
+        # The dictionary maps token strings to token metadata
+        mcp.auth = StaticTokenVerifier({
+            args.auth_token: {
+                "username": "user", 
+                "client_id": "cli-user",
+                "scopes": []
+            }
+        })
     
     kwargs = {}
     if args.transport != "stdio":

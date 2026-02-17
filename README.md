@@ -34,6 +34,12 @@ Run the server over Streamable HTTP:
 python server.py --transport streamable-http --port 8000
 ```
 
+### Authentication
+Enable Bearer authentication with `--auth-token`:
+```bash
+python server.py --transport sse --auth-token "your-secret-token"
+```
+
 ## Tools
 
 - `execute_command(command: str) -> str`: Executes a shell command and returns the output (stdout + stderr).
