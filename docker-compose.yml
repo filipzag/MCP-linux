@@ -1,0 +1,11 @@
+services:
+  mcp-server:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Uncomment to enable authentication via environment variable if you modify server.py to support it,
+    # or pass it as command line argument in command override.
+    # command: ["--transport", "sse", "--port", "8000", "--host", "0.0.0.0", "--auth-token", "mysecret"]
+    restart: unless-stopped
